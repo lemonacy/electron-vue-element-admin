@@ -36,28 +36,28 @@ export default {
       default: ''
     }
   },
-  data() {
+  data () {
     return {
       tempUrl: '',
       dataObj: { token: '', key: '' }
     }
   },
   computed: {
-    imageUrl() {
+    imageUrl () {
       return this.value
     }
   },
   methods: {
-    rmImage() {
+    rmImage () {
       this.emitInput('')
     },
-    emitInput(val) {
+    emitInput (val) {
       this.$emit('input', val)
     },
-    handleImageSuccess() {
+    handleImageSuccess () {
       this.emitInput(this.tempUrl)
     },
-    beforeUpload() {
+    beforeUpload () {
       const _self = this
       return new Promise((resolve, reject) => {
         getToken().then(response => {
@@ -68,7 +68,7 @@ export default {
           this.tempUrl = response.data.qiniu_url
           resolve(true)
         }).catch(() => {
-          reject(false)
+          reject(new Error(false))
         })
       })
     }

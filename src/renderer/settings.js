@@ -1,5 +1,5 @@
 module.exports = {
-  title: '左小鱼后台管理系统',
+  title: 'Electron Vue Element Admin',
 
   /**
    * @type {boolean} true | false

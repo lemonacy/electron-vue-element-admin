@@ -1,6 +1,6 @@
 import defaultSettings from '@/settings'
 
-const title = defaultSettings.title || '左小鱼后台管理系统'
+const title = defaultSettings.title || 'Electron Vue Element Admin'
 
 export default function getPageTitle (pageTitle) {
   if (pageTitle) {

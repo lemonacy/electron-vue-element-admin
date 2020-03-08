@@ -6,7 +6,7 @@ const Mock = require('mockjs')
 
 const mockDir = path.join(process.cwd(), 'mock')
 
-function registerRoutes(app) {
+function registerRoutes (app) {
   let mockLastIndex
   const { default: mocks } = require('./index.js')
   const mocksForServer = mocks.map(route => {
@@ -23,7 +23,7 @@ function registerRoutes(app) {
   }
 }
 
-function unregisterRoutes() {
+function unregisterRoutes () {
   Object.keys(require.cache).forEach(i => {
     if (i.includes(mockDir)) {
       delete require.cache[require.resolve(i)]
@@ -36,7 +36,7 @@ const responseFake = (url, type, respond) => {
   return {
     url: new RegExp(`${process.env.VUE_APP_BASE_API}${url}`),
     type: type || 'get',
-    response(req, res) {
+    response (req, res) {
       console.log('request invoke:' + req.path)
       res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
     }
