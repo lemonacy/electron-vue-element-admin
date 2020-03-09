@@ -1,5 +1,5 @@
 {
-  "name": "hoo-zuoxiaoyu-electron",
+  "name": "electron-vue-element-admin",
   "version": "0.0.1",
   "author": "Asran Deng <lemonacy@163.com>",
   "description": "An electron-vue project",
@@ -22,8 +22,8 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "hoo-zuoxiaoyu-electron",
-    "appId": "cn.luyunmall.zuoxiaoyu",
+    "productName": "electron-vue-element-admin",
+    "appId": "cn.luyunmall.vue-element-admin",
     "directories": {
       "output": "build"
     },

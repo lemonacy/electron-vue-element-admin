@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'hoo-zuoxiaoyu-electron'
+    name: 'electron-vue-element-admin'
   }
 </script>
 
