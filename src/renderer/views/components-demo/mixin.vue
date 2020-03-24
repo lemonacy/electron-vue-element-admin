@@ -37,12 +37,7 @@
           <div style="height:100px;">
             <el-form :model="demo" :rules="demoRules">
               <el-form-item prop="title">
-                <md-input
-                  v-model="demo.title"
-                  icon="el-icon-search"
-                  name="title"
-                  placeholder="输入标题"
-                >标题</md-input>
+                <md-input v-model="demo.title" icon="el-icon-search" name="title" placeholder="输入标题">标题</md-input>
               </el-form-item>
             </el-form>
           </div>
@@ -55,11 +50,7 @@
             <span>图片hover效果</span>
           </div>
           <div class="component-item">
-            <pan-thumb
-              width="100px"
-              height="100px"
-              image="https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191"
-            >vue-element-admin</pan-thumb>
+            <pan-thumb width="100px" height="100px" image="https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191">vue-element-admin</pan-thumb>
           </div>
         </el-card>
       </el-col>

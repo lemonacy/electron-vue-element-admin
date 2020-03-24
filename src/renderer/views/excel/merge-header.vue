@@ -1,22 +1,8 @@
 <template>
   <div class="app-container">
-    <el-button
-      :loading="downloadLoading"
-      style="margin-bottom:20px"
-      type="primary"
-      icon="el-icon-document"
-      @click="handleDownload"
-    >Export</el-button>
+    <el-button :loading="downloadLoading" style="margin-bottom:20px" type="primary" icon="el-icon-document" @click="handleDownload">Export</el-button>
 
-    <el-table
-      ref="multipleTable"
-      v-loading="listLoading"
-      :data="list"
-      element-loading-text="Loading"
-      border
-      fit
-      highlight-current-row
-    >
+    <el-table ref="multipleTable" v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label="Id" width="95">
         <template slot-scope="scope">{{ scope.$index }}</template>
       </el-table-column>

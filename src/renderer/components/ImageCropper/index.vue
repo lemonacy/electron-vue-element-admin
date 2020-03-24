@@ -6,14 +6,7 @@
       </div>
 
       <div v-show="step == 1" class="vicp-step1">
-        <div
-          class="vicp-drop-area"
-          @dragleave="preventDefault"
-          @dragover="preventDefault"
-          @dragenter="preventDefault"
-          @click="handleClick"
-          @drop="handleChange"
-        >
+        <div class="vicp-drop-area" @dragleave="preventDefault" @dragover="preventDefault" @dragenter="preventDefault" @click="handleClick" @drop="handleChange">
           <i v-show="loading != 1" class="vicp-icon1">
             <i class="vicp-icon1-arrow" />
             <i class="vicp-icon1-body" />
@@ -36,53 +29,15 @@
         <div class="vicp-crop">
           <div v-show="true" class="vicp-crop-left">
             <div class="vicp-img-container">
-              <img
-                ref="img"
-                :src="sourceImgUrl"
-                :style="sourceImgStyle"
-                class="vicp-img"
-                draggable="false"
-                @drag="preventDefault"
-                @dragstart="preventDefault"
-                @dragend="preventDefault"
-                @dragleave="preventDefault"
-                @dragover="preventDefault"
-                @dragenter="preventDefault"
-                @drop="preventDefault"
-                @touchstart="imgStartMove"
-                @touchmove="imgMove"
-                @touchend="createImg"
-                @touchcancel="createImg"
-                @mousedown="imgStartMove"
-                @mousemove="imgMove"
-                @mouseup="createImg"
-                @mouseout="createImg"
-              />
+              <img ref="img" :src="sourceImgUrl" :style="sourceImgStyle" class="vicp-img" draggable="false" @drag="preventDefault" @dragstart="preventDefault" @dragend="preventDefault" @dragleave="preventDefault" @dragover="preventDefault" @dragenter="preventDefault" @drop="preventDefault" @touchstart="imgStartMove" @touchmove="imgMove" @touchend="createImg" @touchcancel="createImg" @mousedown="imgStartMove" @mousemove="imgMove" @mouseup="createImg" @mouseout="createImg" />
               <div :style="sourceImgShadeStyle" class="vicp-img-shade vicp-img-shade-1" />
               <div :style="sourceImgShadeStyle" class="vicp-img-shade vicp-img-shade-2" />
             </div>
 
             <div class="vicp-range">
-              <input
-                :value="scale.range"
-                type="range"
-                step="1"
-                min="0"
-                max="100"
-                @input="zoomChange"
-              />
-              <i
-                class="vicp-icon5"
-                @mousedown="startZoomSub"
-                @mouseout="endZoomSub"
-                @mouseup="endZoomSub"
-              />
-              <i
-                class="vicp-icon6"
-                @mousedown="startZoomAdd"
-                @mouseout="endZoomAdd"
-                @mouseup="endZoomAdd"
-              />
+              <input :value="scale.range" type="range" step="1" min="0" max="100" @input="zoomChange" />
+              <i class="vicp-icon5" @mousedown="startZoomSub" @mouseout="endZoomSub" @mouseup="endZoomSub" />
+              <i class="vicp-icon6" @mousedown="startZoomAdd" @mouseout="endZoomAdd" @mouseup="endZoomAdd" />
             </div>
 
             <div v-if="!noRotate" class="vicp-rotate">
@@ -248,7 +203,7 @@ export default {
       // 浏览器是否支持该控件
       isSupported,
       // 浏览器是否支持触屏事件
-      isSupportTouch: document.hasOwnProperty('ontouchstart'),
+      isSupportTouch: Object.prototype.hasOwnProperty.call(document, 'ontouchstart'),
       // 步骤
       step: 1, // 1选择文件 2剪裁 3上传
       // 上传状态及进度

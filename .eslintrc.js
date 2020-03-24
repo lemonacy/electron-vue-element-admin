@@ -1,26 +1,37 @@
 module.exports = {
-  root: true,
-  parser: 'babel-eslint',
-  parserOptions: {
-    sourceType: 'module'
+  "root": true,
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
   },
-  env: {
-    browser: true,
-    node: true
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "parser": "babel-eslint",
+    "allowImportExportEverywhere": true
   },
-  extends: 'standard',
-  globals: {
-    __static: true
-  },
-  plugins: [
-    'html'
+  "extends": ['plugin:vue/recommended', "eslint:recommended"],
+  "plugins": [
+    "vue"
   ],
-  'rules': {
-    // allow paren-less arrow functions
-    'arrow-parens': 0,
-    // allow async-await
-    'generator-star-spacing': 0,
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+  "rules": {
+    "vue/max-attributes-per-line": ["error", {
+      "singleline": 100
+    }],
+    "vue/html-self-closing": ["error", {
+      "html": {
+        "void": "always",
+        "normal": "always",
+        "component": "always"
+      },
+      "svg": "always",
+      "math": "always"
+    }],
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/no-v-html": "off",
+    "no-unused-vars": "off",
+    "semi": ["error", "never"],
+    "no-async-promise-executor": "off"
   }
 }

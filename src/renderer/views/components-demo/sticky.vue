@@ -8,11 +8,7 @@
         </el-button>
         <el-dropdown-menu slot="dropdown" class="no-border">
           <el-checkbox-group v-model="platforms" style="padding: 5px 15px;">
-            <el-checkbox
-              v-for="item in platformsOptions"
-              :key="item.key"
-              :label="item.key"
-            >{{ item.name }}</el-checkbox>
+            <el-checkbox v-for="item in platformsOptions" :key="item.key" :label="item.key">{{ item.name }}</el-checkbox>
           </el-checkbox-group>
         </el-dropdown-menu>
       </el-dropdown>
@@ -30,12 +26,7 @@
       </el-dropdown>
 
       <div class="time-container">
-        <el-date-picker
-          v-model="time"
-          type="datetime"
-          format="yyyy-MM-dd HH:mm:ss"
-          placeholder="Release time"
-        />
+        <el-date-picker v-model="time" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="Release time" />
       </div>
 
       <el-button style="margin-left: 10px;" type="success">publish</el-button>

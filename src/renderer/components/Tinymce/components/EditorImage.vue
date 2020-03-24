@@ -1,24 +1,8 @@
 <template>
   <div class="upload-container">
-    <el-button
-      :style="{background:color,borderColor:color}"
-      icon="el-icon-upload"
-      size="mini"
-      type="primary"
-      @click=" dialogVisible=true"
-    >upload</el-button>
+    <el-button :style="{background:color,borderColor:color}" icon="el-icon-upload" size="mini" type="primary" @click=" dialogVisible=true">upload</el-button>
     <el-dialog :visible.sync="dialogVisible">
-      <el-upload
-        :multiple="true"
-        :file-list="fileList"
-        :show-file-list="true"
-        :on-remove="handleRemove"
-        :on-success="handleSuccess"
-        :before-upload="beforeUpload"
-        class="editor-slide-upload"
-        action="https://httpbin.org/post"
-        list-type="picture-card"
-      >
+      <el-upload :multiple="true" :file-list="fileList" :show-file-list="true" :on-remove="handleRemove" :on-success="handleSuccess" :before-upload="beforeUpload" class="editor-slide-upload" action="https://httpbin.org/post" list-type="picture-card">
         <el-button size="small" type="primary">Click upload</el-button>
       </el-upload>
       <el-button @click="dialogVisible = false">Cancel</el-button>

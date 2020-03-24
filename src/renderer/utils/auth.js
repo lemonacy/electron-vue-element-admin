@@ -1,15 +1,28 @@
 import Cookies from 'js-cookie'
 
 const TokenKey = 'Admin-Token'
+var g_TokenValue = null
 
 export function getToken () {
-  return Cookies.get(TokenKey)
+  if (process.env.NODE_ENV == 'production') {
+    return g_TokenValue
+  } else {
+    return Cookies.get(TokenKey)
+  }
 }
 
 export function setToken (token) {
-  return Cookies.set(TokenKey, token)
+  if (process.env.NODE_ENV == 'production') {
+    g_TokenValue = token
+  } else {
+    Cookies.set(TokenKey, token)
+  }
 }
 
 export function removeToken () {
-  return Cookies.remove(TokenKey)
+  if (process.env.NODE_ENV == 'production') {
+    g_TokenValue = null
+  } else {
+    Cookies.remove(TokenKey)
+  }
 }
