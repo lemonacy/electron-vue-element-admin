@@ -1,10 +1,13 @@
 <template>
   <div class="app-container">
+
     <div>
       <FilenameOption v-model="filename" />
       <AutoWidthOption v-model="autoWidth" />
       <BookTypeOption v-model="bookType" />
-      <el-button :loading="downloadLoading" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleDownload">Export Excel</el-button>
+      <el-button :loading="downloadLoading" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleDownload">
+        Export Excel
+      </el-button>
       <a href="https://panjiachen.github.io/vue-element-admin-site/feature/component/excel.html" target="_blank" style="margin-left:15px;">
         <el-tag type="info">Documentation</el-tag>
       </a>
@@ -12,10 +15,14 @@
 
     <el-table v-loading="listLoading" :data="list" element-loading-text="Loading..." border fit highlight-current-row>
       <el-table-column align="center" label="Id" width="95">
-        <template slot-scope="scope">{{ scope.$index }}</template>
+        <template slot-scope="scope">
+          {{ scope.$index }}
+        </template>
       </el-table-column>
       <el-table-column label="Title">
-        <template slot-scope="scope">{{ scope.row.title }}</template>
+        <template slot-scope="scope">
+          {{ scope.row.title }}
+        </template>
       </el-table-column>
       <el-table-column label="Author" width="110" align="center">
         <template slot-scope="scope">
@@ -23,7 +30,9 @@
         </template>
       </el-table-column>
       <el-table-column label="Readings" width="115" align="center">
-        <template slot-scope="scope">{{ scope.row.pageviews }}</template>
+        <template slot-scope="scope">
+          {{ scope.row.pageviews }}
+        </template>
       </el-table-column>
       <el-table-column align="center" label="Date" width="220">
         <template slot-scope="scope">
@@ -46,7 +55,7 @@ import BookTypeOption from './components/BookTypeOption'
 export default {
   name: 'ExportExcel',
   components: { FilenameOption, AutoWidthOption, BookTypeOption },
-  data () {
+  data() {
     return {
       list: null,
       listLoading: true,
@@ -56,18 +65,18 @@ export default {
       bookType: 'xlsx'
     }
   },
-  created () {
+  created() {
     this.fetchData()
   },
   methods: {
-    fetchData () {
+    fetchData() {
       this.listLoading = true
       fetchList().then(response => {
         this.list = response.data.items
         this.listLoading = false
       })
     },
-    handleDownload () {
+    handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
@@ -84,7 +93,7 @@ export default {
         this.downloadLoading = false
       })
     },
-    formatJson (filterVal, jsonData) {
+    formatJson(filterVal, jsonData) {
       return jsonData.map(v => filterVal.map(j => {
         if (j === 'timestamp') {
           return parseTime(v[j])

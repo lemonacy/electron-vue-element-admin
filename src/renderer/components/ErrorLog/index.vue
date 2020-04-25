@@ -1,10 +1,6 @@
 <template>
   <div v-if="errorLogs.length>0">
-    <el-badge
-      :is-dot="true"
-      style="line-height: 25px;margin-top: -5px;"
-      @click.native="dialogTableVisible=true"
-    >
+    <el-badge :is-dot="true" style="line-height: 25px;margin-top: -5px;" @click.native="dialogTableVisible=true">
       <el-button style="padding: 8px 10px;" size="small" type="danger">
         <svg-icon icon-class="bug" />
       </el-button>
@@ -20,22 +16,30 @@
           <template slot-scope="{row}">
             <div>
               <span class="message-title">Msg:</span>
-              <el-tag type="danger">{{ row.err.message }}</el-tag>
+              <el-tag type="danger">
+                {{ row.err.message }}
+              </el-tag>
             </div>
-            <br />
+            <br>
             <div>
-              <span class="message-title" style="padding-right: 10px;">Info:</span>
-              <el-tag type="warning">{{ row.vm.$vnode.tag }} error in {{ row.info }}</el-tag>
+              <span class="message-title" style="padding-right: 10px;">Info: </span>
+              <el-tag type="warning">
+                {{ row.vm.$vnode.tag }} error in {{ row.info }}
+              </el-tag>
             </div>
-            <br />
+            <br>
             <div>
-              <span class="message-title" style="padding-right: 16px;">Url:</span>
-              <el-tag type="success">{{ row.url }}</el-tag>
+              <span class="message-title" style="padding-right: 16px;">Url: </span>
+              <el-tag type="success">
+                {{ row.url }}
+              </el-tag>
             </div>
           </template>
         </el-table-column>
         <el-table-column label="Stack">
-          <template slot-scope="scope">{{ scope.row.err.stack }}</template>
+          <template slot-scope="scope">
+            {{ scope.row.err.stack }}
+          </template>
         </el-table-column>
       </el-table>
     </el-dialog>
@@ -45,18 +49,18 @@
 <script>
 export default {
   name: 'ErrorLog',
-  data () {
+  data() {
     return {
       dialogTableVisible: false
     }
   },
   computed: {
-    errorLogs () {
+    errorLogs() {
       return this.$store.getters.errorLogs
     }
   },
   methods: {
-    clearAll () {
+    clearAll() {
       this.dialogTableVisible = false
       this.$store.dispatch('errorLog/clearErrorLog')
     }

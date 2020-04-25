@@ -4,7 +4,9 @@
       <h3>{{ list1Title }}</h3>
       <draggable :set-data="setData" :list="list1" group="article" class="dragArea">
         <div v-for="element in list1" :key="element.id" class="list-complete-item">
-          <div class="list-complete-item-handle">{{ element.id }}[{{ element.author }}] {{ element.title }}</div>
+          <div class="list-complete-item-handle">
+            {{ element.id }}[{{ element.author }}] {{ element.title }}
+          </div>
           <div style="position:absolute;right:0px;">
             <span style="float: right ;margin-top: -20px;margin-right:5px;" @click="deleteEle(element)">
               <i style="color:#ff4949" class="el-icon-delete" />
@@ -17,7 +19,9 @@
       <h3>{{ list2Title }}</h3>
       <draggable :list="list2" group="article" class="dragArea">
         <div v-for="element in list2" :key="element.id" class="list-complete-item">
-          <div class="list-complete-item-handle2" @click="pushEle(element)">{{ element.id }} [{{ element.author }}] {{ element.title }}</div>
+          <div class="list-complete-item-handle2" @click="pushEle(element)">
+            {{ element.id }} [{{ element.author }}] {{ element.title }}
+          </div>
         </div>
       </draggable>
     </div>
@@ -33,13 +37,13 @@ export default {
   props: {
     list1: {
       type: Array,
-      default () {
+      default() {
         return []
       }
     },
     list2: {
       type: Array,
-      default () {
+      default() {
         return []
       }
     },
@@ -61,13 +65,13 @@ export default {
     }
   },
   methods: {
-    isNotInList1 (v) {
+    isNotInList1(v) {
       return this.list1.every(k => v.id !== k.id)
     },
-    isNotInList2 (v) {
+    isNotInList2(v) {
       return this.list2.every(k => v.id !== k.id)
     },
-    deleteEle (ele) {
+    deleteEle(ele) {
       for (const item of this.list1) {
         if (item.id === ele.id) {
           const index = this.list1.indexOf(item)
@@ -79,7 +83,7 @@ export default {
         this.list2.unshift(ele)
       }
     },
-    pushEle (ele) {
+    pushEle(ele) {
       for (const item of this.list2) {
         if (item.id === ele.id) {
           const index = this.list2.indexOf(item)
@@ -91,7 +95,7 @@ export default {
         this.list1.push(ele)
       }
     },
-    setData (dataTransfer) {
+    setData(dataTransfer) {
       // to avoid Firefox bug
       // Detail see : https://github.com/RubaXa/Sortable/issues/1012
       dataTransfer.setData('Text', '')
@@ -148,11 +152,11 @@ export default {
 }
 
 .list-complete-item.sortable-chosen {
-  background: #4ab7bd;
+  background: #4AB7BD;
 }
 
 .list-complete-item.sortable-ghost {
-  background: #30b08f;
+  background: #30B08F;
 }
 
 .list-complete-enter,

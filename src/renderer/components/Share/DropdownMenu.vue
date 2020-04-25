@@ -15,7 +15,7 @@ export default {
   props: {
     items: {
       type: Array,
-      default: function () {
+      default: function() {
         return []
       }
     },
@@ -24,13 +24,13 @@ export default {
       default: 'vue'
     }
   },
-  data () {
+  data() {
     return {
       isActive: false
     }
   },
   methods: {
-    clickTitle () {
+    clickTitle() {
       this.isActive = !this.isActive
     }
   }
@@ -39,12 +39,12 @@ export default {
 
 <style lang="scss" >
 $n: 9; //和items.length 相同
-$t: 0.1s;
+$t: .1s;
 .share-dropdown-menu {
   width: 250px;
   position: relative;
   z-index: 1;
-  height: auto !important;
+  height: auto!important;
   &-title {
     width: 100%;
     display: block;
@@ -56,7 +56,7 @@ $t: 0.1s;
     font-size: 20px;
     text-align: center;
     z-index: 2;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0,0,0);
   }
   &-wrapper {
     position: relative;
@@ -81,7 +81,7 @@ $t: 0.1s;
     @for $i from 1 through $n {
       &:nth-of-type(#{$i}) {
         z-index: -1;
-        transition-delay: $i * $t;
+        transition-delay: $i*$t;
         transform: translate3d(0, -60px, 0);
       }
     }
@@ -93,8 +93,8 @@ $t: 0.1s;
     .share-dropdown-menu-item {
       @for $i from 1 through $n {
         &:nth-of-type(#{$i}) {
-          transition-delay: ($n - $i) * $t;
-          transform: translate3d(0, ($i - 1) * 60px, 0);
+          transition-delay: ($n - $i)*$t;
+          transform: translate3d(0, ($i - 1)*60px, 0);
         }
       }
     }

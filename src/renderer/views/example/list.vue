@@ -1,13 +1,6 @@
 <template>
   <div class="app-container">
-    <el-table
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%"
-    >
+    <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="ID" width="80">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
@@ -28,18 +21,15 @@
 
       <el-table-column width="100px" label="Importance">
         <template slot-scope="scope">
-          <svg-icon
-            v-for="n in +scope.row.importance"
-            :key="n"
-            icon-class="star"
-            class="meta-item__icon"
-          />
+          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon" />
         </template>
       </el-table-column>
 
       <el-table-column class-name="status-col" label="Status" width="110">
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">{{ row.status }}</el-tag>
+          <el-tag :type="row.status | statusFilter">
+            {{ row.status }}
+          </el-tag>
         </template>
       </el-table-column>
 
@@ -54,19 +44,15 @@
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="scope">
           <router-link :to="'/example/edit/'+scope.row.id">
-            <el-button type="primary" size="small" icon="el-icon-edit">Edit</el-button>
+            <el-button type="primary" size="small" icon="el-icon-edit">
+              Edit
+            </el-button>
           </router-link>
         </template>
       </el-table-column>
     </el-table>
 
-    <pagination
-      v-show="total>0"
-      :total="total"
-      :page.sync="listQuery.page"
-      :limit.sync="listQuery.limit"
-      @pagination="getList"
-    />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 
@@ -78,7 +64,7 @@ export default {
   name: 'ArticleList',
   components: { Pagination },
   filters: {
-    statusFilter (status) {
+    statusFilter(status) {
       const statusMap = {
         published: 'success',
         draft: 'info',
@@ -87,7 +73,7 @@ export default {
       return statusMap[status]
     }
   },
-  data () {
+  data() {
     return {
       list: null,
       total: 0,
@@ -98,11 +84,11 @@ export default {
       }
     }
   },
-  created () {
+  created() {
     this.getList()
   },
   methods: {
-    getList () {
+    getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
@@ -112,7 +98,7 @@ export default {
     }
   }
 }
-</script>Î
+</script>
 
 <style scoped>
 .edit-input {

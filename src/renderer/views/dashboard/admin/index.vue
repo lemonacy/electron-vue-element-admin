@@ -27,34 +27,13 @@
     </el-row>
 
     <el-row :gutter="8">
-      <el-col
-        :xs="{span: 24}"
-        :sm="{span: 24}"
-        :md="{span: 24}"
-        :lg="{span: 12}"
-        :xl="{span: 12}"
-        style="padding-right:8px;margin-bottom:30px;"
-      >
+      <el-col :xs="{span: 24}" :sm="{span: 24}" :md="{span: 24}" :lg="{span: 12}" :xl="{span: 12}" style="padding-right:8px;margin-bottom:30px;">
         <transaction-table />
       </el-col>
-      <el-col
-        :xs="{span: 24}"
-        :sm="{span: 12}"
-        :md="{span: 12}"
-        :lg="{span: 6}"
-        :xl="{span: 6}"
-        style="margin-bottom:30px;"
-      >
+      <el-col :xs="{span: 24}" :sm="{span: 12}" :md="{span: 12}" :lg="{span: 6}" :xl="{span: 6}" style="margin-bottom:30px;">
         <todo-list />
       </el-col>
-      <el-col
-        :xs="{span: 24}"
-        :sm="{span: 12}"
-        :md="{span: 12}"
-        :lg="{span: 6}"
-        :xl="{span: 6}"
-        style="margin-bottom:30px;"
-      >
+      <el-col :xs="{span: 24}" :sm="{span: 12}" :md="{span: 12}" :lg="{span: 6}" :xl="{span: 6}" style="margin-bottom:30px;">
         <box-card />
       </el-col>
     </el-row>
@@ -104,13 +83,13 @@ export default {
     TodoList,
     BoxCard
   },
-  data () {
+  data() {
     return {
       lineChartData: lineChartData.newVisitis
     }
   },
   methods: {
-    handleSetLineChartData (type) {
+    handleSetLineChartData(type) {
       this.lineChartData = lineChartData[type]
     }
   }
@@ -137,7 +116,7 @@ export default {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width:1024px) {
   .chart-wrapper {
     padding: 8px;
   }

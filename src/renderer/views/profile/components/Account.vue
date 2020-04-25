@@ -26,7 +26,7 @@ export default {
     }
   },
   methods: {
-    submit () {
+    submit() {
       this.$message({
         message: 'User information has been updated successfully',
         type: 'success',

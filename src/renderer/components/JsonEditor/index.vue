@@ -9,29 +9,29 @@ import CodeMirror from 'codemirror'
 import 'codemirror/addon/lint/lint.css'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/rubyblue.css'
+require('script-loader!jsonlint')
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/addon/lint/lint'
 import 'codemirror/addon/lint/json-lint'
-// require('script-loader!jsonlint')
 
 export default {
   name: 'JsonEditor',
   /* eslint-disable vue/require-prop-types */
   props: ['value'],
-  data () {
+  data() {
     return {
       jsonEditor: false
     }
   },
   watch: {
-    value (value) {
+    value(value) {
       const editorValue = this.jsonEditor.getValue()
       if (value !== editorValue) {
         this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
       }
     }
   },
-  mounted () {
+  mounted() {
     this.jsonEditor = CodeMirror.fromTextArea(this.$refs.textarea, {
       lineNumbers: true,
       mode: 'application/json',
@@ -47,7 +47,7 @@ export default {
     })
   },
   methods: {
-    getValue () {
+    getValue() {
       return this.jsonEditor.getValue()
     }
   }
@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style scoped>
-.json-editor {
+.json-editor{
   height: 100%;
   position: relative;
 }
@@ -63,10 +63,10 @@ export default {
   height: auto;
   min-height: 300px;
 }
-.json-editor >>> .CodeMirror-scroll {
+.json-editor >>> .CodeMirror-scroll{
   min-height: 300px;
 }
 .json-editor >>> .cm-s-rubyblue span.cm-string {
-  color: #f08047;
+  color: #F08047;
 }
 </style>

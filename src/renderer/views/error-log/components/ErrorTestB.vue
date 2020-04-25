@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  created () {
+  created() {
     this.b = b // eslint-disable-line
   }
 }

@@ -13,14 +13,14 @@ const state = {
 
 const mutations = {
   CHANGE_SETTING: (state, { key, value }) => {
-    if (Object.prototype.hasOwnProperty.call(state, key)) {
+    if (state.hasOwnProperty(key)) {
       state[key] = value
     }
   }
 }
 
 const actions = {
-  changeSetting ({ commit }, data) {
+  changeSetting({ commit }, data) {
     commit('CHANGE_SETTING', data)
   }
 }
@@ -31,3 +31,4 @@ export default {
   mutations,
   actions
 }
+

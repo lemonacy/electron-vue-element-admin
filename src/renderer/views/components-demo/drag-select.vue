@@ -5,7 +5,9 @@
     </el-drag-select>
 
     <div style="margin-top:30px;">
-      <el-tag v-for="item of value" :key="item" style="margin-right:15px;">{{ item }}</el-tag>
+      <el-tag v-for="item of value" :key="item" style="margin-right:15px;">
+        {{ item }}
+      </el-tag>
     </div>
   </div>
 </template>
@@ -16,7 +18,7 @@ import ElDragSelect from '@/components/DragSelect' // base on element-ui
 export default {
   name: 'DragSelectDemo',
   components: { ElDragSelect },
-  data () {
+  data() {
     return {
       value: ['Apple', 'Banana', 'Orange'],
       options: [{

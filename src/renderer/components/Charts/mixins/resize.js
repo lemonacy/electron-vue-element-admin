@@ -1,16 +1,16 @@
 import { debounce } from '@/utils'
 
 export default {
-  data () {
+  data() {
     return {
       $_sidebarElm: null,
       $_resizeHandler: null
     }
   },
-  mounted () {
+  mounted() {
     this.initListener()
   },
-  activated () {
+  activated() {
     if (!this.$_resizeHandler) {
       // avoid duplication init
       this.initListener()
@@ -19,21 +19,21 @@ export default {
     // when keep-alive chart activated, auto resize
     this.resize()
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.destroyListener()
   },
-  deactivated () {
+  deactivated() {
     this.destroyListener()
   },
   methods: {
     // use $_ for mixins properties
     // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
-    $_sidebarResizeHandler (e) {
+    $_sidebarResizeHandler(e) {
       if (e.propertyName === 'width') {
         this.$_resizeHandler()
       }
     },
-    initListener () {
+    initListener() {
       this.$_resizeHandler = debounce(() => {
         this.resize()
       }, 100)
@@ -42,13 +42,13 @@ export default {
       this.$_sidebarElm = document.getElementsByClassName('sidebar-container')[0]
       this.$_sidebarElm && this.$_sidebarElm.addEventListener('transitionend', this.$_sidebarResizeHandler)
     },
-    destroyListener () {
+    destroyListener() {
       window.removeEventListener('resize', this.$_resizeHandler)
       this.$_resizeHandler = null
 
       this.$_sidebarElm && this.$_sidebarElm.removeEventListener('transitionend', this.$_sidebarResizeHandler)
     },
-    resize () {
+    resize() {
       const { chart } = this
       chart && chart.resize()
     }

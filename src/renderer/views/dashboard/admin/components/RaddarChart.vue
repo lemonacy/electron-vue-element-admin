@@ -4,8 +4,8 @@
 
 <script>
 import echarts from 'echarts'
-import resize from './mixins/resize'
 require('echarts/theme/macarons') // echarts theme
+import resize from './mixins/resize'
 
 const animationDuration = 3000
 
@@ -25,17 +25,17 @@ export default {
       default: '300px'
     }
   },
-  data () {
+  data() {
     return {
       chart: null
     }
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
       this.initChart()
     })
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (!this.chart) {
       return
     }
@@ -43,7 +43,7 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart () {
+    initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
 
       this.chart.setOption({
@@ -70,7 +70,7 @@ export default {
           indicator: [
             { name: 'Sales', max: 10000 },
             { name: 'Administration', max: 20000 },
-            { name: 'Information Techology', max: 20000 },
+            { name: 'Information Technology', max: 20000 },
             { name: 'Customer Support', max: 20000 },
             { name: 'Development', max: 20000 },
             { name: 'Marketing', max: 20000 }

@@ -21,13 +21,13 @@ export default {
     id: {
       type: String,
       required: false,
-      default () {
+      default() {
         return 'markdown-editor-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '')
       }
     },
     options: {
       type: Object,
-      default () {
+      default() {
         return defaultOptions
       }
     },
@@ -46,13 +46,13 @@ export default {
       default: 'en_US' // https://github.com/nhnent/tui.editor/tree/master/src/js/langs
     }
   },
-  data () {
+  data() {
     return {
       editor: null
     }
   },
   computed: {
-    editorOptions () {
+    editorOptions() {
       const options = Object.assign({}, defaultOptions, this.options)
       options.initialEditType = this.mode
       options.height = this.height
@@ -61,30 +61,30 @@ export default {
     }
   },
   watch: {
-    value (newValue, preValue) {
+    value(newValue, preValue) {
       if (newValue !== preValue && newValue !== this.editor.getValue()) {
         this.editor.setValue(newValue)
       }
     },
-    language (val) {
+    language(val) {
       this.destroyEditor()
       this.initEditor()
     },
-    height (newValue) {
+    height(newValue) {
       this.editor.height(newValue)
     },
-    mode (newValue) {
+    mode(newValue) {
       this.editor.changeMode(newValue)
     }
   },
-  mounted () {
+  mounted() {
     this.initEditor()
   },
-  destroyed () {
+  destroyed() {
     this.destroyEditor()
   },
   methods: {
-    initEditor () {
+    initEditor() {
       this.editor = new Editor({
         el: document.getElementById(this.id),
         ...this.editorOptions
@@ -96,21 +96,21 @@ export default {
         this.$emit('input', this.editor.getValue())
       })
     },
-    destroyEditor () {
+    destroyEditor() {
       if (!this.editor) return
       this.editor.off('change')
       this.editor.remove()
     },
-    setValue (value) {
+    setValue(value) {
       this.editor.setValue(value)
     },
-    getValue () {
+    getValue() {
       return this.editor.getValue()
     },
-    setHtml (value) {
+    setHtml(value) {
       this.editor.setHtml(value)
     },
-    getHtml () {
+    getHtml() {
       return this.editor.getHtml()
     }
   }

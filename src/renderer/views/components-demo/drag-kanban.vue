@@ -13,7 +13,7 @@ export default {
   components: {
     Kanban
   },
-  data () {
+  data() {
     return {
       group: 'mission',
       list1: [
@@ -48,7 +48,7 @@ export default {
 .kanban {
   &.todo {
     .board-column-header {
-      background: #4a9ff9;
+      background: #4A9FF9;
     }
   }
   &.working {

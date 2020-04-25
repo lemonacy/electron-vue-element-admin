@@ -98,8 +98,9 @@ let rendererConfig = {
         exclude: [path.join(__dirname, '../src/renderer/icons')],
         use: {
           loader: 'url-loader',
-          query: {
+          options: {
             limit: 10000,
+            esModule: false,
             name: 'imgs/[name]--[folder].[ext]'
           }
         }
@@ -116,7 +117,7 @@ let rendererConfig = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         use: {
           loader: 'url-loader',
-          query: {
+          options: {
             limit: 10000,
             name: 'fonts/[name]--[folder].[ext]'
           }

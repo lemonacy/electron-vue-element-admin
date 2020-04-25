@@ -11,13 +11,30 @@
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">Search</el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">Add</el-button>
-      <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">Export</el-button>
-      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">reviewer</el-checkbox>
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+        Search
+      </el-button>
+      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
+        Add
+      </el-button>
+      <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
+        Export
+      </el-button>
+      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
+        reviewer
+      </el-checkbox>
     </div>
 
-    <el-table :key="tableKey" v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%;" @sort-change="sortChange">
+    <el-table
+      :key="tableKey"
+      v-loading="listLoading"
+      :data="list"
+      border
+      fit
+      highlight-current-row
+      style="width: 100%;"
+      @sort-change="sortChange"
+    >
       <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
@@ -57,15 +74,25 @@
       </el-table-column>
       <el-table-column label="Status" class-name="status-col" width="100">
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">{{ row.status }}</el-tag>
+          <el-tag :type="row.status | statusFilter">
+            {{ row.status }}
+          </el-tag>
         </template>
       </el-table-column>
       <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">Edit</el-button>
-          <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">Publish</el-button>
-          <el-button v-if="row.status!='draft'" size="mini" @click="handleModifyStatus(row,'draft')">Draft</el-button>
-          <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">Delete</el-button>
+          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+            Edit
+          </el-button>
+          <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
+            Publish
+          </el-button>
+          <el-button v-if="row.status!='draft'" size="mini" @click="handleModifyStatus(row,'draft')">
+            Draft
+          </el-button>
+          <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
+            Delete
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -98,8 +125,12 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">Confirm</el-button>
+        <el-button @click="dialogFormVisible = false">
+          Cancel
+        </el-button>
+        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
+          Confirm
+        </el-button>
       </div>
     </el-dialog>
 
@@ -139,7 +170,7 @@ export default {
   components: { Pagination },
   directives: { waves },
   filters: {
-    statusFilter (status) {
+    statusFilter(status) {
       const statusMap = {
         published: 'success',
         draft: 'info',
@@ -147,11 +178,11 @@ export default {
       }
       return statusMap[status]
     },
-    typeFilter (type) {
+    typeFilter(type) {
       return calendarTypeKeyValue[type]
     }
   },
-  data () {
+  data() {
     return {
       tableKey: 0,
       list: null,
@@ -195,11 +226,11 @@ export default {
       downloadLoading: false
     }
   },
-  created () {
+  created() {
     this.getList()
   },
   methods: {
-    getList () {
+    getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
@@ -211,24 +242,24 @@ export default {
         }, 1.5 * 1000)
       })
     },
-    handleFilter () {
+    handleFilter() {
       this.listQuery.page = 1
       this.getList()
     },
-    handleModifyStatus (row, status) {
+    handleModifyStatus(row, status) {
       this.$message({
         message: '操作Success',
         type: 'success'
       })
       row.status = status
     },
-    sortChange (data) {
+    sortChange(data) {
       const { prop, order } = data
       if (prop === 'id') {
         this.sortByID(order)
       }
     },
-    sortByID (order) {
+    sortByID(order) {
       if (order === 'ascending') {
         this.listQuery.sort = '+id'
       } else {
@@ -236,7 +267,7 @@ export default {
       }
       this.handleFilter()
     },
-    resetTemp () {
+    resetTemp() {
       this.temp = {
         id: undefined,
         importance: 1,
@@ -247,7 +278,7 @@ export default {
         type: ''
       }
     },
-    handleCreate () {
+    handleCreate() {
       this.resetTemp()
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
@@ -255,7 +286,7 @@ export default {
         this.$refs['dataForm'].clearValidate()
       })
     },
-    createData () {
+    createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.temp.id = parseInt(Math.random() * 100) + 1024 // mock a id
@@ -273,7 +304,7 @@ export default {
         }
       })
     },
-    handleUpdate (row) {
+    handleUpdate(row) {
       this.temp = Object.assign({}, row) // copy obj
       this.temp.timestamp = new Date(this.temp.timestamp)
       this.dialogStatus = 'update'
@@ -282,7 +313,7 @@ export default {
         this.$refs['dataForm'].clearValidate()
       })
     },
-    updateData () {
+    updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
@@ -301,7 +332,7 @@ export default {
         }
       })
     },
-    handleDelete (row, index) {
+    handleDelete(row, index) {
       this.$notify({
         title: 'Success',
         message: 'Delete Successfully',
@@ -310,13 +341,13 @@ export default {
       })
       this.list.splice(index, 1)
     },
-    handleFetchPv (pv) {
+    handleFetchPv(pv) {
       fetchPv(pv).then(response => {
         this.pvData = response.data.pvData
         this.dialogPvVisible = true
       })
     },
-    handleDownload () {
+    handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
@@ -330,7 +361,7 @@ export default {
         this.downloadLoading = false
       })
     },
-    formatJson (filterVal) {
+    formatJson(filterVal) {
       return this.list.map(v => filterVal.map(j => {
         if (j === 'timestamp') {
           return parseTime(v[j])
@@ -339,7 +370,7 @@ export default {
         }
       }))
     },
-    getSortClass: function (key) {
+    getSortClass: function(key) {
       const sort = this.listQuery.sort
       return sort === `+${key}` ? 'ascending' : 'descending'
     }

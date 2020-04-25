@@ -1,12 +1,7 @@
 <template>
   <div class="block">
     <el-timeline>
-      <el-timeline-item
-        v-for="(item,index) of timeline"
-        :key="index"
-        :timestamp="item.timestamp"
-        placement="top"
-      >
+      <el-timeline-item v-for="(item,index) of timeline" :key="index" :timestamp="item.timestamp" placement="top">
         <el-card>
           <h4>{{ item.title }}</h4>
           <p>{{ item.content }}</p>
@@ -18,7 +13,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       timeline: [
         {

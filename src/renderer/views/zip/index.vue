@@ -1,13 +1,19 @@
 <template>
   <div class="app-container">
     <el-input v-model="filename" placeholder="Please enter the file name (default file)" style="width:300px;" prefix-icon="el-icon-document" />
-    <el-button :loading="downloadLoading" style="margin-bottom:20px;" type="primary" icon="el-icon-document" @click="handleDownload">Export Zip</el-button>
+    <el-button :loading="downloadLoading" style="margin-bottom:20px;" type="primary" icon="el-icon-document" @click="handleDownload">
+      Export Zip
+    </el-button>
     <el-table v-loading="listLoading" :data="list" element-loading-text="拼命加载中" border fit highlight-current-row>
       <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">{{ scope.$index }}</template>
+        <template slot-scope="scope">
+          {{ scope.$index }}
+        </template>
       </el-table-column>
       <el-table-column label="Title">
-        <template slot-scope="scope">{{ scope.row.title }}</template>
+        <template slot-scope="scope">
+          {{ scope.row.title }}
+        </template>
       </el-table-column>
       <el-table-column label="Author" width="95" align="center">
         <template slot-scope="scope">
@@ -15,7 +21,9 @@
         </template>
       </el-table-column>
       <el-table-column label="Readings" width="115" align="center">
-        <template slot-scope="scope">{{ scope.row.pageviews }}</template>
+        <template slot-scope="scope">
+          {{ scope.row.pageviews }}
+        </template>
       </el-table-column>
       <el-table-column align="center" label="Date" width="220">
         <template slot-scope="scope">
@@ -32,7 +40,7 @@ import { fetchList } from '@/api/article'
 
 export default {
   name: 'ExportZip',
-  data () {
+  data() {
     return {
       list: null,
       listLoading: true,
@@ -40,17 +48,17 @@ export default {
       filename: ''
     }
   },
-  created () {
+  created() {
     this.fetchData()
   },
   methods: {
-    async fetchData () {
+    async fetchData() {
       this.listLoading = true
       const { data } = await fetchList()
       this.list = data.items
       this.listLoading = false
     },
-    handleDownload () {
+    handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Zip').then(zip => {
         const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
@@ -61,7 +69,7 @@ export default {
         this.downloadLoading = false
       })
     },
-    formatJson (filterVal, jsonData) {
+    formatJson(filterVal, jsonData) {
       return jsonData.map(v => filterVal.map(j => v[j]))
     }
   }

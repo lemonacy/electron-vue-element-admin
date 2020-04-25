@@ -1,18 +1,12 @@
 <template>
-  <div
-    v-loading.fullscreen.lock="fullscreenLoading"
-    class="main-article"
-    element-loading-text="Efforts to generate PDF"
-  >
+  <div v-loading.fullscreen.lock="fullscreenLoading" class="main-article" element-loading-text="Efforts to generate PDF">
     <div class="article__heading">
-      <div class="article__heading__title">{{ article.title }}</div>
+      <div class="article__heading__title">
+        {{ article.title }}
+      </div>
     </div>
     <div style="color: #ccc;">
-      This article is from Evan You on
-      <a
-        target="_blank"
-        href="https://medium.com/the-vue-point/plans-for-the-next-iteration-of-vue-js-777ffea6fabf"
-      >medium</a>
+      This article is from Evan You on <a target="_blank" href="https://medium.com/the-vue-point/plans-for-the-next-iteration-of-vue-js-777ffea6fabf">medium</a>
     </div>
     <div ref="content" class="node-article-content" v-html="article.content" />
   </div>
@@ -21,17 +15,17 @@
 <script>
 
 export default {
-  data () {
+  data() {
     return {
       article: '',
       fullscreenLoading: true
     }
   },
-  mounted () {
+  mounted() {
     this.fetchData()
   },
   methods: {
-    fetchData () {
+    fetchData() {
       import('./content.js').then(data => {
         const { title } = data.default
         document.title = title
@@ -52,13 +46,13 @@ export default {
 @mixin clearfix {
   &:before {
     display: table;
-    content: "";
+    content: '';
     clear: both;
   }
 
   &:after {
     display: table;
-    content: "";
+    content: '';
     clear: both;
   }
 }
@@ -100,10 +94,9 @@ export default {
   letter-spacing: 0.5px;
   line-height: 28px;
   margin-bottom: 30px;
-  font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman",
-    Times, serif;
+  font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
 
-  & > :last-child {
+  &> :last-child {
     margin-bottom: 0;
   }
 
@@ -124,7 +117,8 @@ export default {
     font-style: normal;
     font-size: 21px;
     line-height: 1.58;
-    letter-spacing: -0.003em;
+    letter-spacing: -.003em;
+
   }
 
   ul {
@@ -135,12 +129,12 @@ export default {
     --x-height-multiplier: 0.375;
     --baseline-multiplier: 0.17;
 
-    letter-spacing: 0.01rem;
+    letter-spacing: .01rem;
     font-weight: 400;
     font-style: normal;
     font-size: 21px;
     line-height: 1.58;
-    letter-spacing: -0.003em;
+    letter-spacing: -.003em;
     margin-left: 30px;
     margin-bottom: 14px;
   }
@@ -148,18 +142,14 @@ export default {
   a {
     text-decoration: none;
     background-repeat: repeat-x;
-    background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.84) 100%,
-      rgba(0, 0, 0, 0) 0
-    );
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .84) 100%, rgba(0, 0, 0, 0) 0);
     background-size: 1px 1px;
     background-position: 0 calc(1em + 1px);
     padding: 0 6px;
   }
 
   code {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, .05);
     padding: 3px 4px;
     margin: 0 2px;
     font-size: 16px;
@@ -178,15 +168,14 @@ export default {
   blockquote {
     --x-height-multiplier: 0.375;
     --baseline-multiplier: 0.17;
-    font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman",
-      Times, serif;
-    letter-spacing: 0.01rem;
+    font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
+    letter-spacing: .01rem;
     font-weight: 400;
     font-style: italic;
     font-size: 21px;
     line-height: 1.58;
-    letter-spacing: -0.003em;
-    border-left: 3px solid rgba(0, 0, 0, 0.84);
+    letter-spacing: -.003em;
+    border-left: 3px solid rgba(0, 0, 0, .84);
     padding-left: 20px;
     margin-left: -23px;
     padding-bottom: 2px;
@@ -201,7 +190,7 @@ export default {
   h4 {
     font-size: 34px;
     line-height: 1.15;
-    letter-spacing: -0.015em;
+    letter-spacing: -.015em;
     margin: 53px 0 0;
   }
 

@@ -27,7 +27,9 @@
 
       <el-table-column class-name="status-col" label="Status" width="110">
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">{{ row.status }}</el-tag>
+          <el-tag :type="row.status | statusFilter">
+            {{ row.status }}
+          </el-tag>
         </template>
       </el-table-column>
 
@@ -35,7 +37,15 @@
         <template slot-scope="{row}">
           <template v-if="row.edit">
             <el-input v-model="row.title" class="edit-input" size="small" />
-            <el-button class="cancel-btn" size="small" icon="el-icon-refresh" type="warning" @click="cancelEdit(row)">cancel</el-button>
+            <el-button
+              class="cancel-btn"
+              size="small"
+              icon="el-icon-refresh"
+              type="warning"
+              @click="cancelEdit(row)"
+            >
+              cancel
+            </el-button>
           </template>
           <span v-else>{{ row.title }}</span>
         </template>
@@ -43,8 +53,24 @@
 
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="{row}">
-          <el-button v-if="row.edit" type="success" size="small" icon="el-icon-circle-check-outline" @click="confirmEdit(row)">Ok</el-button>
-          <el-button v-else type="primary" size="small" icon="el-icon-edit" @click="row.edit=!row.edit">Edit</el-button>
+          <el-button
+            v-if="row.edit"
+            type="success"
+            size="small"
+            icon="el-icon-circle-check-outline"
+            @click="confirmEdit(row)"
+          >
+            Ok
+          </el-button>
+          <el-button
+            v-else
+            type="primary"
+            size="small"
+            icon="el-icon-edit"
+            @click="row.edit=!row.edit"
+          >
+            Edit
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -57,7 +83,7 @@ import { fetchList } from '@/api/article'
 export default {
   name: 'InlineEditTable',
   filters: {
-    statusFilter (status) {
+    statusFilter(status) {
       const statusMap = {
         published: 'success',
         draft: 'info',
@@ -66,7 +92,7 @@ export default {
       return statusMap[status]
     }
   },
-  data () {
+  data() {
     return {
       list: null,
       listLoading: true,
@@ -76,11 +102,11 @@ export default {
       }
     }
   },
-  created () {
+  created() {
     this.getList()
   },
   methods: {
-    async getList () {
+    async getList() {
       this.listLoading = true
       const { data } = await fetchList(this.listQuery)
       const items = data.items
@@ -91,7 +117,7 @@ export default {
       })
       this.listLoading = false
     },
-    cancelEdit (row) {
+    cancelEdit(row) {
       row.title = row.originalTitle
       row.edit = false
       this.$message({
@@ -99,7 +125,7 @@ export default {
         type: 'warning'
       })
     },
-    confirmEdit (row) {
+    confirmEdit(row) {
       row.edit = false
       row.originalTitle = row.title
       this.$message({

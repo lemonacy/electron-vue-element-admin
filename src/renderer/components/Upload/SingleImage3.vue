@@ -11,13 +11,12 @@
     >
       <i class="el-icon-upload" />
       <div class="el-upload__text">
-        将文件拖到此处，或
-        <em>点击上传</em>
+        将文件拖到此处，或<em>点击上传</em>
       </div>
     </el-upload>
     <div class="image-preview image-app-preview">
       <div v-show="imageUrl.length>1" class="image-preview-wrapper">
-        <img :src="imageUrl" />
+        <img :src="imageUrl">
         <div class="image-preview-action">
           <i class="el-icon-delete" @click="rmImage" />
         </div>
@@ -25,7 +24,7 @@
     </div>
     <div class="image-preview">
       <div v-show="imageUrl.length>1" class="image-preview-wrapper">
-        <img :src="imageUrl" />
+        <img :src="imageUrl">
         <div class="image-preview-action">
           <i class="el-icon-delete" @click="rmImage" />
         </div>
@@ -45,28 +44,28 @@ export default {
       default: ''
     }
   },
-  data () {
+  data() {
     return {
       tempUrl: '',
       dataObj: { token: '', key: '' }
     }
   },
   computed: {
-    imageUrl () {
+    imageUrl() {
       return this.value
     }
   },
   methods: {
-    rmImage () {
+    rmImage() {
       this.emitInput('')
     },
-    emitInput (val) {
+    emitInput(val) {
       this.$emit('input', val)
     },
-    handleImageSuccess (file) {
+    handleImageSuccess(file) {
       this.emitInput(file.files.file)
     },
-    beforeUpload () {
+    beforeUpload() {
       const _self = this
       return new Promise((resolve, reject) => {
         getToken().then(response => {
@@ -78,7 +77,7 @@ export default {
           resolve(true)
         }).catch(err => {
           console.log(err)
-          reject(new Error(false))
+          reject(false)
         })
       })
     }
@@ -123,8 +122,8 @@ export default {
       color: #fff;
       opacity: 0;
       font-size: 20px;
-      background-color: rgba(0, 0, 0, 0.5);
-      transition: opacity 0.3s;
+      background-color: rgba(0, 0, 0, .5);
+      transition: opacity .3s;
       cursor: pointer;
       text-align: center;
       line-height: 200px;

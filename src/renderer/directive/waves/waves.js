@@ -2,8 +2,8 @@ import './waves.css'
 
 const context = '@@wavesContext'
 
-function handleClick (el, binding) {
-  function handle (e) {
+function handleClick(el, binding) {
+  function handle(e) {
     const customOpts = Object.assign({}, binding.value)
     const opts = Object.assign({
       ele: el, // 波纹作用元素
@@ -57,14 +57,14 @@ function handleClick (el, binding) {
 }
 
 export default {
-  bind (el, binding) {
+  bind(el, binding) {
     el.addEventListener('click', handleClick(el, binding), false)
   },
-  update (el, binding) {
+  update(el, binding) {
     el.removeEventListener('click', el[context].removeHandle, false)
     el.addEventListener('click', handleClick(el, binding), false)
   },
-  unbind (el) {
+  unbind(el) {
     el.removeEventListener('click', el[context].removeHandle, false)
     el[context] = null
     delete el[context]

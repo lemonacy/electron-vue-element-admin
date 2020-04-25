@@ -45,7 +45,9 @@
 
     <el-table-column class-name="status-col" label="Status" width="110">
       <template slot-scope="{row}">
-        <el-tag :type="row.status | statusFilter">{{ row.status }}</el-tag>
+        <el-tag :type="row.status | statusFilter">
+          {{ row.status }}
+        </el-tag>
       </template>
     </el-table-column>
   </el-table>
@@ -56,7 +58,7 @@ import { fetchList } from '@/api/article'
 
 export default {
   filters: {
-    statusFilter (status) {
+    statusFilter(status) {
       const statusMap = {
         published: 'success',
         draft: 'info',
@@ -71,7 +73,7 @@ export default {
       default: 'CN'
     }
   },
-  data () {
+  data() {
     return {
       list: null,
       listQuery: {
@@ -83,11 +85,11 @@ export default {
       loading: false
     }
   },
-  created () {
+  created() {
     this.getList()
   },
   methods: {
-    getList () {
+    getList() {
       this.loading = true
       this.$emit('create') // for test
       fetchList(this.listQuery).then(response => {

@@ -1,14 +1,27 @@
 <template>
   <div class="app-container">
+
     <el-button :loading="downloadLoading" style="margin-bottom:20px" type="primary" icon="el-icon-document" @click="handleDownload">Export</el-button>
 
-    <el-table ref="multipleTable" v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
+    <el-table
+      ref="multipleTable"
+      v-loading="listLoading"
+      :data="list"
+      element-loading-text="Loading"
+      border
+      fit
+      highlight-current-row
+    >
       <el-table-column align="center" label="Id" width="95">
-        <template slot-scope="scope">{{ scope.$index }}</template>
+        <template slot-scope="scope">
+          {{ scope.$index }}
+        </template>
       </el-table-column>
       <el-table-column label="Main Information" align="center">
         <el-table-column label="Title">
-          <template slot-scope="scope">{{ scope.row.title }}</template>
+          <template slot-scope="scope">
+            {{ scope.row.title }}
+          </template>
         </el-table-column>
         <el-table-column label="Author" width="110" align="center">
           <template slot-scope="scope">
@@ -16,7 +29,9 @@
           </template>
         </el-table-column>
         <el-table-column label="Readings" width="115" align="center">
-          <template slot-scope="scope">{{ scope.row.pageviews }}</template>
+          <template slot-scope="scope">
+            {{ scope.row.pageviews }}
+          </template>
         </el-table-column>
       </el-table-column>
       <el-table-column align="center" label="Date" width="220">
@@ -26,6 +41,7 @@
         </template>
       </el-table-column>
     </el-table>
+
   </div>
 </template>
 
@@ -35,43 +51,43 @@ import { parseTime } from '@/utils'
 
 export default {
   name: 'MergeHeader',
-  data () {
+  data() {
     return {
       list: null,
       listLoading: true,
       downloadLoading: false
     }
   },
-  created () {
+  created() {
     this.fetchData()
   },
   methods: {
-    fetchData () {
+    fetchData() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
         this.listLoading = false
       })
     },
-    handleDownload () {
+    handleDownload() {
       this.downloadLoading = true
-      import('@/vendor/Export2Excel').then(excel => {
-        const multiHeader = [['Id', 'Main Information', '', '', 'Date']]
-        const header = ['', 'Title', 'Author', 'Readings', '']
-        const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
-        const list = this.list
-        const data = this.formatJson(filterVal, list)
-        const merges = ['A1:A2', 'B1:D1', 'E1:E2']
-        excel.export_json_to_excel({
-          multiHeader,
-          header,
-          merges,
-          data
+        import('@/vendor/Export2Excel').then(excel => {
+          const multiHeader = [['Id', 'Main Information', '', '', 'Date']]
+          const header = ['', 'Title', 'Author', 'Readings', '']
+          const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
+          const list = this.list
+          const data = this.formatJson(filterVal, list)
+          const merges = ['A1:A2', 'B1:D1', 'E1:E2']
+          excel.export_json_to_excel({
+            multiHeader,
+            header,
+            merges,
+            data
+          })
+          this.downloadLoading = false
         })
-        this.downloadLoading = false
-      })
     },
-    formatJson (filterVal, jsonData) {
+    formatJson(filterVal, jsonData) {
       return jsonData.map(v => filterVal.map(j => {
         if (j === 'timestamp') {
           return parseTime(v[j])

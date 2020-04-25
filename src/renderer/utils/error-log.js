@@ -7,7 +7,7 @@ import settings from '@/settings'
 // errorLog:'production' | ['production', 'development']
 const { errorLog: needErrorLog } = settings
 
-function checkNeed () {
+function checkNeed() {
   const env = process.env.NODE_ENV
   if (isString(needErrorLog)) {
     return env === needErrorLog
@@ -19,7 +19,7 @@ function checkNeed () {
 }
 
 if (checkNeed()) {
-  Vue.config.errorHandler = function (err, vm, info, a) {
+  Vue.config.errorHandler = function(err, vm, info, a) {
   // Don't ask me why I use Vue.nextTick, it just a hack.
   // detail see https://forum.vuejs.org/t/dispatch-in-vue-config-errorhandler-has-some-problem/23500
     Vue.nextTick(() => {

@@ -5,10 +5,7 @@
 
       <div class="drawer-item">
         <span>Theme Color</span>
-        <theme-picker
-          style="float: right;height: 26px;margin: -3px 8px 0 0;"
-          @change="themeChange"
-        />
+        <theme-picker style="float: right;height: 26px;margin: -3px 8px 0 0;" @change="themeChange" />
       </div>
 
       <div class="drawer-item">
@@ -25,6 +22,7 @@
         <span>Sidebar Logo</span>
         <el-switch v-model="sidebarLogo" class="drawer-switch" />
       </div>
+
     </div>
   </div>
 </template>
@@ -34,15 +32,15 @@ import ThemePicker from '@/components/ThemePicker'
 
 export default {
   components: { ThemePicker },
-  data () {
+  data() {
     return {}
   },
   computed: {
     fixedHeader: {
-      get () {
+      get() {
         return this.$store.state.settings.fixedHeader
       },
-      set (val) {
+      set(val) {
         this.$store.dispatch('settings/changeSetting', {
           key: 'fixedHeader',
           value: val
@@ -50,10 +48,10 @@ export default {
       }
     },
     tagsView: {
-      get () {
+      get() {
         return this.$store.state.settings.tagsView
       },
-      set (val) {
+      set(val) {
         this.$store.dispatch('settings/changeSetting', {
           key: 'tagsView',
           value: val
@@ -61,10 +59,10 @@ export default {
       }
     },
     sidebarLogo: {
-      get () {
+      get() {
         return this.$store.state.settings.sidebarLogo
       },
-      set (val) {
+      set(val) {
         this.$store.dispatch('settings/changeSetting', {
           key: 'sidebarLogo',
           value: val
@@ -73,7 +71,7 @@ export default {
     }
   },
   methods: {
-    themeChange (val) {
+    themeChange(val) {
       this.$store.dispatch('settings/changeSetting', {
         key: 'theme',
         value: val
@@ -92,19 +90,19 @@ export default {
 
   .drawer-title {
     margin-bottom: 12px;
-    color: rgba(0, 0, 0, 0.85);
+    color: rgba(0, 0, 0, .85);
     font-size: 14px;
     line-height: 22px;
   }
 
   .drawer-item {
-    color: rgba(0, 0, 0, 0.65);
+    color: rgba(0, 0, 0, .65);
     font-size: 14px;
     padding: 12px 0;
   }
 
   .drawer-switch {
-    float: right;
+    float: right
   }
 }
 </style>

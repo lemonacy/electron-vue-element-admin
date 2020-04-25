@@ -1,9 +1,13 @@
 <template>
   <div style="display:inline-block;">
-    <label class="radio-label">Cell Auto-Width:</label>
+    <label class="radio-label">Cell Auto-Width: </label>
     <el-radio-group v-model="autoWidth">
-      <el-radio :label="true" border>True</el-radio>
-      <el-radio :label="false" border>False</el-radio>
+      <el-radio :label="true" border>
+        True
+      </el-radio>
+      <el-radio :label="false" border>
+        False
+      </el-radio>
     </el-radio-group>
   </div>
 </template>
@@ -18,10 +22,10 @@ export default {
   },
   computed: {
     autoWidth: {
-      get () {
+      get() {
         return this.value
       },
-      set (val) {
+      set(val) {
         this.$emit('input', val)
       }
     }

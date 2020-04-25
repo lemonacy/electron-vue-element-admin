@@ -12,12 +12,7 @@
       class="header-search-select"
       @change="change"
     >
-      <el-option
-        v-for="item in options"
-        :key="item.path"
-        :value="item"
-        :label="item.title.join(' > ')"
-      />
+      <el-option v-for="item in options" :key="item.path" :value="item" :label="item.title.join(' > ')" />
     </el-select>
   </div>
 </template>
@@ -30,7 +25,7 @@ import path from 'path'
 
 export default {
   name: 'HeaderSearch',
-  data () {
+  data() {
     return {
       search: '',
       options: [],
@@ -40,18 +35,18 @@ export default {
     }
   },
   computed: {
-    routes () {
+    routes() {
       return this.$store.getters.permission_routes
     }
   },
   watch: {
-    routes () {
+    routes() {
       this.searchPool = this.generateRoutes(this.routes)
     },
-    searchPool (list) {
+    searchPool(list) {
       this.initFuse(list)
     },
-    show (value) {
+    show(value) {
       if (value) {
         document.body.addEventListener('click', this.close)
       } else {
@@ -59,22 +54,22 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.searchPool = this.generateRoutes(this.routes)
   },
   methods: {
-    click () {
+    click() {
       this.show = !this.show
       if (this.show) {
         this.$refs.headerSearchSelect && this.$refs.headerSearchSelect.focus()
       }
     },
-    close () {
+    close() {
       this.$refs.headerSearchSelect && this.$refs.headerSearchSelect.blur()
       this.options = []
       this.show = false
     },
-    change (val) {
+    change(val) {
       this.$router.push(val.path)
       this.search = ''
       this.options = []
@@ -82,7 +77,7 @@ export default {
         this.show = false
       })
     },
-    initFuse (list) {
+    initFuse(list) {
       this.fuse = new Fuse(list, {
         shouldSort: true,
         threshold: 0.4,
@@ -101,7 +96,7 @@ export default {
     },
     // Filter out the routes that can be displayed in the sidebar
     // And generate the internationalized title
-    generateRoutes (routes, basePath = '/', prefixTitle = []) {
+    generateRoutes(routes, basePath = '/', prefixTitle = []) {
       let res = []
 
       for (const router of routes) {
@@ -133,7 +128,7 @@ export default {
       }
       return res
     },
-    querySearch (query) {
+    querySearch(query) {
       if (query !== '') {
         this.options = this.fuse.search(query)
       } else {

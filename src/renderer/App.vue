@@ -9,7 +9,3 @@ export default {
   name: 'ElectronVueElementAdmin'
 }
 </script>
-
-<style>
-/* CSS */
-</style>

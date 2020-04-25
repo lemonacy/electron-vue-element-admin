@@ -1,9 +1,11 @@
 <template>
   <div>
-    <input ref="excel-upload-input" class="excel-upload-input" type="file" accept=".xlsx, .xls" @change="handleClick" />
+    <input ref="excel-upload-input" class="excel-upload-input" type="file" accept=".xlsx, .xls" @change="handleClick">
     <div class="drop" @drop="handleDrop" @dragover="handleDragover" @dragenter="handleDragover">
       Drop excel file here or
-      <el-button :loading="loading" style="margin-left:16px;" size="mini" type="primary" @click="handleUpload">Browse</el-button>
+      <el-button :loading="loading" style="margin-left:16px;" size="mini" type="primary" @click="handleUpload">
+        Browse
+      </el-button>
     </div>
   </div>
 </template>
@@ -16,7 +18,7 @@ export default {
     beforeUpload: Function, // eslint-disable-line
     onSuccess: Function// eslint-disable-line
   },
-  data () {
+  data() {
     return {
       loading: false,
       excelData: {
@@ -26,12 +28,12 @@ export default {
     }
   },
   methods: {
-    generateData ({ header, results }) {
+    generateData({ header, results }) {
       this.excelData.header = header
       this.excelData.results = results
       this.onSuccess && this.onSuccess(this.excelData)
     },
-    handleDrop (e) {
+    handleDrop(e) {
       e.stopPropagation()
       e.preventDefault()
       if (this.loading) return
@@ -50,21 +52,21 @@ export default {
       e.stopPropagation()
       e.preventDefault()
     },
-    handleDragover (e) {
+    handleDragover(e) {
       e.stopPropagation()
       e.preventDefault()
       e.dataTransfer.dropEffect = 'copy'
     },
-    handleUpload () {
+    handleUpload() {
       this.$refs['excel-upload-input'].click()
     },
-    handleClick (e) {
+    handleClick(e) {
       const files = e.target.files
       const rawFile = files[0] // only use files[0]
       if (!rawFile) return
       this.upload(rawFile)
     },
-    upload (rawFile) {
+    upload(rawFile) {
       this.$refs['excel-upload-input'].value = null // fix can't select the same excel
 
       if (!this.beforeUpload) {
@@ -76,7 +78,7 @@ export default {
         this.readerData(rawFile)
       }
     },
-    readerData (rawFile) {
+    readerData(rawFile) {
       this.loading = true
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
@@ -94,7 +96,7 @@ export default {
         reader.readAsArrayBuffer(rawFile)
       })
     },
-    getHeaderRow (sheet) {
+    getHeaderRow(sheet) {
       const headers = []
       const range = XLSX.utils.decode_range(sheet['!ref'])
       let C
@@ -109,7 +111,7 @@ export default {
       }
       return headers
     },
-    isExcel (file) {
+    isExcel(file) {
       return /\.(xlsx|xls|csv)$/.test(file.name)
     }
   }
@@ -117,11 +119,11 @@ export default {
 </script>
 
 <style scoped>
-.excel-upload-input {
+.excel-upload-input{
   display: none;
   z-index: -9999;
 }
-.drop {
+.drop{
   border: 2px dashed #bbb;
   width: 600px;
   height: 160px;

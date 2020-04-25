@@ -3,12 +3,11 @@
     <aside>
       The guide page is useful for some people who entered the project for the first time. You can briefly introduce the
       features of the project. Demo is based on
-      <a
-        href="https://github.com/kamranahmedse/driver.js"
-        target="_blank"
-      >driver.js.</a>
+      <a href="https://github.com/kamranahmedse/driver.js" target="_blank">driver.js.</a>
     </aside>
-    <el-button icon="el-icon-question" type="primary" @click.prevent.stop="guide">Show Guide</el-button>
+    <el-button icon="el-icon-question" type="primary" @click.prevent.stop="guide">
+      Show Guide
+    </el-button>
   </div>
 </template>
 
@@ -19,16 +18,16 @@ import steps from './steps'
 
 export default {
   name: 'Guide',
-  data () {
+  data() {
     return {
       driver: null
     }
   },
-  mounted () {
+  mounted() {
     this.driver = new Driver()
   },
   methods: {
-    guide () {
+    guide() {
       this.driver.defineSteps(steps)
       this.driver.start()
     }
