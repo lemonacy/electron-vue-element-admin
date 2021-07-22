@@ -85,7 +85,7 @@
     "vuedraggable": "^2.23.2",
     "vuex": "^3.2.0",
     "vuex-electron": "^1.0.3",
-    "xlsx": "^0.15.6"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
