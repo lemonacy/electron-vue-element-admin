@@ -139,7 +139,7 @@
     "mockjs": "^1.1.0",
     "multispinner": "^0.2.1",
     "node-loader": "^0.6.0",
-    "node-sass": "^4.14.0",
+    "node-sass": "^7.0.0",
     "require-dir": "^1.2.0",
     "sass-loader": "^8.0.2",
     "spectron": "^10.0.1",
